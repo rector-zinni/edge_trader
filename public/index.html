@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  class=" js flexbox flexboxlegacy csstransitions" lang="en" style="--primary: #ff5400; ">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -23,8 +23,26 @@
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
+      
     -->
-    <title>React App</title>
+      
+      <link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/jquery-ui.css" />
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/radialprogress.css" />
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/select2.min.css" />
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/style_dashboard.css" />  
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/style.css" />
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/animate.css" />
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/owl.carousel.min.css" />
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/owl.theme.default.min.css" />
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/themes/darkpurple/css/aos.css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-yMZ+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+          
+    
+
+    <title>edgeTrader</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +57,123 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+        
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="%PUBLIC_URL%/assets/themes/darkpurple/js/modernizr.custom.js"></script>
+<script src="https://optimizetradingtips.com/assets/themes/darkpurple/js/bootstrap.bundle.min.js"></script>
+<script src="https://optimizetradingtips.com/assets/themes/darkpurple/js/jquery-3.6.1.min.js"></script>
+<script src="https://optimizetradingtips.com/assets/themes/darkpurple/js/jquery-ui.js"></script>
+<script src="https://optimizetradingtips.com/assets/themes/darkpurple/js/aos.js"></script>
+<script src="https://optimizetradingtips.com/assets/themes/darkpurple/js/radialprogress.js"></script>
+<script src="https://optimizetradingtips.com/assets/themes/darkpurple/js/select2.min.js"></script>
+<script src="https://optimizetradingtips.com/assets/themes/darkpurple/js/fontawesomepro.js"></script>
+
+
+<script src="https://optimizetradingtips.com/assets/global/js/notiflix-aio-2.7.0.min.js"></script>
+<script src="https://optimizetradingtips.com/assets/global/js/pusher.min.js"></script>
+<script src="https://optimizetradingtips.com/assets/global/js/vue.min.js"></script>
+<script src="https://optimizetradingtips.com/assets/global/js/axios.min.js"></script>
+<!-- custom script -->
+<script src="https://optimizetradingtips.com/assets/themes/darkpurple/js/dashboard.js"></script>
+
+
+<script>
+    'use strict';
+    let pushNotificationArea = new Vue({
+        el: "#pushNotificationArea",
+        data: {
+            items: [],
+        },
+        mounted() {
+            this.getNotifications();
+            this.pushNewItem();
+        },
+        methods: {
+            getNotifications() {
+                let app = this;
+                axios.get("https://optimizetradingtips.com/user/push-notification-show")
+                    .then(function (res) {
+                        app.items = res.data;
+                    })
+            },
+            readAt(id, link) {
+                let app = this;
+                let url = "https://optimizetradingtips.com/user/push-notification-readAt/0";
+                url = url.replace(/.$/, id);
+                axios.get(url)
+                    .then(function (res) {
+                        if (res.status) {
+                            app.getNotifications();
+                            if (link != '#') {
+                                window.location.href = link
+                            }
+                        }
+                    })
+            },
+            readAll() {
+                let app = this;
+                let url = "https://optimizetradingtips.com/user/push.notification.readAll";
+                axios.get(url)
+                    .then(function (res) {
+                        if (res.status) {
+                            app.items = [];
+                        }
+                    })
+            },
+            pushNewItem() {
+                let app = this;
+                // Pusher.logToConsole = true;
+                let pusher = new Pusher("7f333d3a98d4f2f16daa", {
+                    encrypted: true,
+                    cluster: "ap2"
+                });
+                let channel = pusher.subscribe('user-notification.' + "127");
+                channel.bind('App\\Events\\UserNotification', function (data) {
+                    app.items.unshift(data.message);
+                });
+                channel.bind('App\\Events\\UpdateUserNotification', function (data) {
+                    app.getNotifications();
+                });
+            }
+        }
+    });
+</script>
+
+
+ 
+    
+
+
+
+
+
+
+<!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+             var Tawk_SRC = 'https://embed.tawk.to/' + "65385fdef2439e1631e80ad4/1hdi6s8b1";
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+            (function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = Tawk_SRC;
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        });
+    </script>
+    <!--End of Tawk.to Script-->
+
+
+
+
+
+    <script>
+        var root = document.querySelector(':root');
+        root.style.setProperty('--primary', '#ff5400');
+    </script>
+
   </body>
 </html>

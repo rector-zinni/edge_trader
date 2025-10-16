@@ -1,0 +1,38 @@
+.transaction-section {
+  background-color: transparent !important; /* deep dark purple */
+  min-height: 100vh;
+  color: #fff;
+  padding-top: 2rem;
+}
+
+.table-header {
+  background-color: #ff6600 !important; /* orange header */
+  *{
+
+  color: #fff !important;
+  }
+}
+
+.search-btn {
+  background-color: #ff6600;
+  color: #fff;
+  border: none;
+}
+
+.search-btn:hover {
+  background-color: #e65c00;
+}
+
+.form-control{
+    background-color: transparent !important; /* deep dark purple */
+    color: #fff!important;
+
+    
+}
+.form-control::placeholder{
+        color: #ccc !important; /* light gray placeholder text */
+    }
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ff6600;
+}
